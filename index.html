@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo weby — přehled projektů</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f1117;
+      --surface:  #1a1d27;
+      --card:     #1e2130;
+      --border:   #2a2e3f;
+      --accent:   #6366f1;
+      --accent2:  #8b5cf6;
+      --green:    #10b981;
+      --orange:   #f59e0b;
+      --text:     #e8eaf0;
+      --muted:    #8b90a4;
+      --r:        12px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #0f1117 0%, #1a1040 50%, #0f1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .badge {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      background: rgba(99,102,241,.12);
+      border: 1px solid rgba(99,102,241,.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    header p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ── LAYOUT ── */
+    main { max-width: 1200px; margin: 0 auto; padding: 56px 24px 80px; }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+      margin-bottom: 52px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .card:hover {
+      border-color: rgba(99,102,241,.45);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.35);
+    }
+
+    .card-top {
+      padding: 22px 22px 18px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+    .tag-react  { background: rgba(99,102,241,.15); color: #818cf8; }
+    .tag-html   { background: rgba(16,185,129,.13); color: #34d399; }
+    .tag-vite   { background: rgba(245,158,11,.13); color: #fbbf24; }
+
+    .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+    .card h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+    .card .subtitle {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    /* ── ACCORDION ── */
+    .accordion {
+      border-top: 1px solid var(--border);
+    }
+    .accordion-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 22px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color .2s;
+      text-align: left;
+    }
+    .accordion-toggle:hover { color: var(--text); }
+    .accordion-toggle .arrow {
+      font-size: .9rem;
+      transition: transform .25s;
+      flex-shrink: 0;
+    }
+    .accordion-toggle.open { color: var(--text); }
+    .accordion-toggle.open .arrow { transform: rotate(180deg); }
+
+    .accordion-body {
+      display: none;
+      padding: 0 22px 18px;
+      border-top: 1px solid var(--border);
+    }
+    .accordion-body.open { display: block; }
+
+    .info-block {
+      margin-top: 14px;
+    }
+    .info-label {
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .info-text {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .info-list {
+      list-style: none;
+      margin-top: 6px;
+    }
+    .info-list li {
+      font-size: .81rem;
+      color: var(--muted);
+      padding: 2px 0 2px 14px;
+      position: relative;
+    }
+    .info-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: .75rem;
+    }
+
+    /* ── FOOTER CTA ── */
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      padding: 14px 22px;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      flex: 1;
+      justify-content: center;
+    }
+    .btn-primary:hover { background: #4f46e5; }
+    .btn-ghost {
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header { padding: 48px 20px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Ukázky webů</div>
+  <h1>Demo weby — přehled projektů</h1>
+  <p>Kolekce konverzních landing pages a firemních webů pro různé obory.<br>Klikni na kartu a zjisti, co web obsahuje a jak byl postaven.</p>
+</header>
+
+<main>
+
+  <!-- ══ React / Vite projekty ══ -->
+  <div class="section-label">React + Vite projekty</div>
+  <div class="grid">
+
+    <!-- 01 Řemeslník -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-react">React</span>
+          <span class="tag tag-vite">Vite</span>
+        </div>
+        <div class="card-icon">🔧</div>
+        <h2>Hodinový Manžel Novák</h2>
+        <div class="subtitle">Instalatér a hodinový manžel · Praha</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Maximálně konverzní mobilní stránka pro živnostníka. Primární CTA je přímé volání, vše je postaveno na rychlém příjezdu a důvěryhodnosti.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s prominentním tlačítkem „VOLAT HNED"</li>
+              <li>Ceník (výjezd, výměna baterie, čištění odpadu)</li>
+              <li>Přehled služeb (instalatérství, montáže, silikonování)</li>
+              <li>Reference zákazníků</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">React, Vite · CSS bez frameworku · téma „craft"</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/01-remeslnik/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/01-remeslnik" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 02 Bistro -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-react">React</span>
+          <span class="tag tag-vite">Vite</span>
+        </div>
+        <div class="card-icon">🍔</div>
+        <h2>EMBER Bistro</h2>
+        <div class="subtitle">Moderní bistro & food truck</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Emocionální landing page pro bistro/food truck. Silný hero s fotkou jídla, dynamické menu s filtry a praktické provozní info.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Celostránkový hero s atmosférou</li>
+              <li>Filtrovatelné menu (Top seller, Vegetarian, Sweet finish…)</li>
+              <li>Mapa s odkazem na Google Maps</li>
+              <li>Otevírací doba (Po–Pá + víkend)</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">React (useState, useMemo), Vite · tmavý design · dynamické filtry menu</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/02-bistro/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/02-bistro" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 03 Konzultant -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-react">React</span>
+          <span class="tag tag-vite">Vite</span>
+        </div>
+        <div class="card-icon">💼</div>
+        <h2>Business konzultant / VA</h2>
+        <div class="subtitle">Virtuální asistentka & operativa</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Prezentační stránka pro konzultantku/VA. Důraz na důvěryhodnost, jasné vymezení služeb a kvalifikovaný poptávkový formulář.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s profilem a posláním</li>
+              <li>Přehled pomoci (backoffice, klientský servis, procesy)</li>
+              <li>FAQ (jak funguje spolupráce, jazyky, jednorázové sprinty)</li>
+              <li>Kontaktní formulář s validací (name, email, agenda) + localStorage</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">React (useState), Vite · formulář s validací · ukládání leadů do localStorage</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/03-konzultant/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/03-konzultant" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 04 Apartmán -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-react">React</span>
+          <span class="tag tag-vite">Vite</span>
+        </div>
+        <div class="card-icon">🏡</div>
+        <h2>Chalupa Na Mechu</h2>
+        <div class="subtitle">Ubytování v Jizerských horách</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Přehledná stránka pro soukromé ubytování. Cílem je rezervační formulář – přímé poptávky bez prostředníka.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s náladou chalupy</li>
+              <li>Galerie (vizuální bloky)</li>
+              <li>Vybavení (Wi-Fi, sauna, krby, parkování…)</li>
+              <li>Tipy na výlety (Protržená přehrada, Jizerka, Bramberk)</li>
+              <li>Rezervační formulář (termín, hosté, kontakt) + localStorage</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">React (useState), Vite · rezervační formulář s validací</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/04-apartman/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/04-apartman" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 05 Advokát -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-react">React</span>
+          <span class="tag tag-vite">Vite</span>
+        </div>
+        <div class="card-icon">⚖️</div>
+        <h2>Lex & Forma</h2>
+        <div class="subtitle">Advokátní kancelář</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Reprezentativní web pro advokáty. Důraz na odbornost, důvěru a hladký sběr poptávek přes formulář s GDPR souhlasem.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero se zaměřením kanceláře</li>
+              <li>Odbornosti (obchodní právo, nemovitosti, pracovní právo)</li>
+              <li>Tým (profesní profily)</li>
+              <li>Poptávkový formulář s GDPR checkboxem + localStorage</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">React (useState), Vite · formulář s GDPR validací</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/05-advokat/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/05-advokat" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 06 Fitness -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-react">React</span>
+          <span class="tag tag-vite">Vite</span>
+        </div>
+        <div class="card-icon">🧘</div>
+        <h2>Pulse Studio</h2>
+        <div class="subtitle">Fitness & jóga studio</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Konverzní stránka pro fitness studio. Hned viditelný rozvrh lekcí, ceník a registrační formulář na první lekci.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s výzvou k akci</li>
+              <li>Rozvrh lekcí (Morning Mobility, Strength Flow, Hot Yoga Reset)</li>
+              <li>Ceník (jednorázový vstup, měsíční členství, plán na míru)</li>
+              <li>Registrační formulář (jméno, email, cíl, výběr lekce) + localStorage</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">React (useState), Vite · formulář s validací cíle</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/06-fitness/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/06-fitness" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 07 Produkt -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-react">React</span>
+          <span class="tag tag-vite">Vite</span>
+        </div>
+        <div class="card-icon">🤖</div>
+        <h2>AI Workflow Kit</h2>
+        <div class="subtitle">Digitální produkt / online kurz</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Prodejní landing page pro digitální produkt. Jeden jasný cíl: prodej. Recenze a přímý platební odkaz přes Stripe.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s silným headlinem zaměřeným na konverzi</li>
+              <li>Výhody produktu (práce s AI, příprava nabídek, landing pages)</li>
+              <li>Recenze zákazníků</li>
+              <li>Nákupní formulář (email + platební metoda: Stripe) + localStorage</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">React (useState), Vite · prodejní formulář se Stripe integrací</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/07-produkt/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/07-produkt" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- 08 Architekt -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-react">React</span>
+          <span class="tag tag-vite">Vite</span>
+        </div>
+        <div class="card-icon">🏛️</div>
+        <h2>Architektonické studio</h2>
+        <div class="subtitle">Rodinné domy, interiéry, studie</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Prémiová prezentace pro architektonické studio. Atmosférický design, ukázky projektů a srozumitelný popis procesu spolupráce.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s estetickým headlinem</li>
+              <li>Služby (rodinné domy, interiéry, studie & rekonstrukce)</li>
+              <li>Portfolio projektů (vila, městský interiér, ateliér)</li>
+              <li>Proces spolupráce (3 kroky)</li>
+              <li>Kontaktní formulář (projekt, pozn.) + localStorage</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">React (useState), Vite · minimalistický prémiový design</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/08-makler/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/08-makler" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ HTML / CSS projekty ══ -->
+  <div class="section-label">Čisté HTML + CSS projekty</div>
+  <div class="grid">
+
+    <!-- Kadeřnictví -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-html">HTML</span>
+          <span class="tag tag-html">CSS</span>
+        </div>
+        <div class="card-icon">✂️</div>
+        <h2>Kadeřnictví Maruška</h2>
+        <div class="subtitle">Luxusní kadeřnictví s online rezervací</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Elegantní web pro prémiové kadeřnictví. Zeleno-zlatý design, Playfair Display pro nadpisy. Rezervace online nebo telefonicky.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s profilem a mottem</li>
+              <li>Ceník služeb (střih, barvení, melír, balayage, regenerace)</li>
+              <li>Galerie prací</li>
+              <li>Online rezervace (formulář nebo tel. kontakt)</li>
+              <li>Plné SEO meta tagy + og: tagy</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">Čisté HTML + CSS · Google Fonts (Playfair Display + Inter) · žádný JS framework</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="kadernictvi/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/kadernictvi" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Freelancer -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-html">HTML</span>
+          <span class="tag tag-html">CSS</span>
+        </div>
+        <div class="card-icon">🖥️</div>
+        <h2>Ondřej Blaha — Freelancer</h2>
+        <div class="subtitle">Webdesigner & frontend developer</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Moderní portfolio pro freelance webdesignera. Tmavě-modrý design, Syne font. Důraz na konkrétní výsledky: od 15 000 Kč, dodání do 3 týdnů.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s hodnotovou nabídkou</li>
+              <li>Portfolio prací</li>
+              <li>Ceník a balíčky</li>
+              <li>Proces práce (3 kroky)</li>
+              <li>Kontaktní formulář</li>
+              <li>Scroll-reveal animace</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">Čisté HTML + CSS + vanilla JS · Google Fonts (Syne + Inter) · IntersectionObserver animace</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="freelancer/index.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/freelancer" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Demo 1 - Web do 24 hodin -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-html">HTML</span>
+          <span class="tag tag-html">CSS</span>
+        </div>
+        <div class="card-icon">⚡</div>
+        <h2>Web do 24 hodin</h2>
+        <div class="subtitle">Webová agentura — rychlé weby</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Landing page pro webovou agenturu specializovanou na rychlé dodání. USP: hotový web do 24 hodin. Fialovo-tmavý gradient design.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s odpočítáváním / urgencí</li>
+              <li>Výhody a proces</li>
+              <li>Ukázky prací / reference</li>
+              <li>Ceník balíčků</li>
+              <li>Kontaktní formulář</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">Čisté HTML + CSS · fialový dark design · Segoe UI / system fonts</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="demo1-web24hodin.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/blob/main/demo1-web24hodin.html" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Demo 2 - Autoservis -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-html">HTML</span>
+          <span class="tag tag-html">CSS</span>
+        </div>
+        <div class="card-icon">🚗</div>
+        <h2>Autoservis Procházka</h2>
+        <div class="subtitle">Rychlý a spolehlivý servis · Most</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Lokální web pro autoservis v Mostě. Červeno-tmavý design. Snadná orientace pro zákazníka — co opravíme, za kolik a kdy.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s hlavním telefonním CTA</li>
+              <li>Přehled služeb (diagnostika, pneuservis, klimatizace…)</li>
+              <li>Ceník</li>
+              <li>Otevírací doba a lokace</li>
+              <li>Poptávkový formulář</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">Čisté HTML + CSS · červený akcent (#d62828) · tmavý navy podklad</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="demo2-autoservis.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/blob/main/demo2-autoservis.html" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Demo 3 - Ninja vikend -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="tag tag-html">HTML</span>
+          <span class="tag tag-html">CSS</span>
+        </div>
+        <div class="card-icon">🥷</div>
+        <h2>Ninja den</h2>
+        <div class="subtitle">Dobrodružství pro děti 6–15 let</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel</div>
+            <div class="info-text">Energická landing page pro dětský akční víkend/tábor. Zeleno-oranžový design plný akce. Cíl: okamžitá registrace.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Sekce</div>
+            <ul class="info-list">
+              <li>Hero s nadšeným headlinem pro rodiče</li>
+              <li>Program a aktivity (lezení, šplh, překážky)</li>
+              <li>Pro koho je akce (věk, vybavení)</li>
+              <li>Ceník a termíny</li>
+              <li>Přihlašovací formulář</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Tech stack</div>
+            <div class="info-text">Čisté HTML + CSS · zelený akcent (#16a34a) + oranžová (#f59e0b) · světlý nadšený design</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="demo3-ninja-vikend.html">Zobrazit demo</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/blob/main/demo3-ninja-vikend.html" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  Demo weby · <a href="https://github.com/mirabeecko/customers_webs" style="color:var(--accent)">github.com/mirabeecko/customers_webs</a>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    // close all in same card
+    const card = btn.closest('.card');
+    card.querySelectorAll('.accordion-toggle').forEach(b => b.classList.remove('open'));
+    card.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+    if (!isOpen) {
+      btn.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+</script>
+
+</body>
+</html>
