@@ -137,15 +137,15 @@
 
     /* ── MAIN ── */
     main {
-      max-width: 1360px;
+      max-width: 1680px;
       margin: 0 auto;
       padding: 0 32px 80px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+      gap: 36px;
     }
 
     /* ── CARD ── */
@@ -165,21 +165,29 @@
       border-color: var(--border-d);
     }
 
-    /* ── IFRAME PREVIEW ── */
+    /* ── SITE PREVIEW ── */
     .card-preview {
-      height: 300px;
+      height: 420px;
       overflow: hidden;
       position: relative;
-      background: #0f1117;
+      background: transparent;
       flex-shrink: 0;
+      border-bottom: 1px solid var(--border);
     }
-    .card-preview iframe {
+    .card-preview img {
       width: 100%;
-      height: 900px;
-      border: none;
+      height: 100%;
       display: block;
       pointer-events: none;
       user-select: none;
+      object-fit: cover;
+      object-position: center top;
+      transform: scale(1.08);
+      transform-origin: center top;
+      transition: transform .35s ease;
+    }
+    .card:hover .card-preview img {
+      transform: scale(1.13);
     }
     .card-preview::after {
       content: '';
@@ -187,8 +195,8 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        transparent 48%,
-        rgba(255,255,255,.12) 78%,
+        transparent 68%,
+        rgba(255,255,255,.34) 88%,
         rgba(255,255,255,1) 100%
       );
       pointer-events: none;
@@ -216,14 +224,15 @@
 
     /* ── CARD BODY ── */
     .card-top {
-      padding: 20px 22px 16px;
+      padding: 16px 20px 14px;
       flex: 1;
+      background: rgba(255,255,255,.96);
     }
     .card-meta {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .tech-tag {
       font-size: .65rem;
@@ -237,14 +246,14 @@
     }
 
     .card h2 {
-      font-size: 1rem;
+      font-size: .98rem;
       font-weight: 700;
       margin-bottom: 4px;
       line-height: 1.3;
       color: var(--text);
     }
     .card .subtitle {
-      font-size: .8rem;
+      font-size: .78rem;
       color: var(--muted);
     }
 
@@ -255,7 +264,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 22px;
+      padding: 11px 20px;
       background: none;
       border: none;
       color: var(--muted);
@@ -273,7 +282,7 @@
 
     .accordion-body {
       display: none;
-      padding: 4px 22px 18px;
+      padding: 4px 20px 18px;
       border-top: 1px solid var(--border);
       background: #fafbfc;
     }
@@ -308,7 +317,7 @@
     .card-actions {
       display: flex;
       gap: 8px;
-      padding: 14px 22px;
+      padding: 12px 20px;
       border-top: 1px solid var(--border);
       background: var(--bg);
     }
@@ -356,6 +365,11 @@
       header { padding: 48px 20px 48px; }
       main { padding: 0 16px 60px; }
       .grid { grid-template-columns: 1fr; }
+      .card-preview { height: 330px; }
+      .card-preview img {
+        transform: scale(1.04);
+      }
+      .card:hover .card-preview img { transform: scale(1.08); }
       .stats-row { gap: 20px; padding: 14px 20px; }
     }
   </style>
@@ -395,7 +409,7 @@
     <!-- PaddleBoardTrips.eu -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="demo7-paddleboardy-milada.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/demo7-paddleboardy-milada.png" alt="Náhled webu PaddleBoardTrips.eu" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -434,7 +448,7 @@
     <!-- Ninja den -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="demo3-ninja-vikend.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/demo3-ninja-vikend.png" alt="Náhled webu Ninja den" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -470,17 +484,17 @@
       </div>
     </div>
 
-    <!-- Autolakyrnictví Šelbický -->
+    <!-- Autolakyrnictví Honza Šelbický -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="demo4-selbicky.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/demo4-selbicky.png" alt="Náhled webu Autolakýrnictví Honza Šelbický" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
           <span class="web-type type-local">Lokální firemní web</span>
           <span class="tech-tag">HTML</span>
         </div>
-        <h2>Autolakýrnictví Šelbický</h2>
+        <h2>Autolakýrnictví Honza Šelbický</h2>
         <div class="subtitle">Profesionální lakování vozidel · Krupka</div>
       </div>
       <div class="accordion">
@@ -512,7 +526,7 @@
     <!-- Kadeřnictví -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="demo5-kadernictvimaruska.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/demo5-kadernictvimaruska.png" alt="Náhled webu Kadeřnictví Maruška" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -551,7 +565,7 @@
     <!-- Freelancer -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="demo6-freelancer.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/demo6-freelancer.png" alt="Náhled webu Freelancer portfolio" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -590,7 +604,7 @@
     <!-- Web do 24 hodin -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="demo1-web24hodin.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/demo1-web24hodin.png" alt="Náhled webu web do 24 hodin" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -629,7 +643,7 @@
     <!-- Autoservis -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="demo2-autoservis.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/demo2-autoservis.png" alt="Náhled webu autoservis" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -668,7 +682,7 @@
     <!-- Hodinový manžel -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="reference/01-remeslnik/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/reference-01-remeslnik.png" alt="Náhled webu Hodinový manžel Novák" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -707,7 +721,7 @@
     <!-- Bistro -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="reference/02-bistro/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/reference-02-bistro.png" alt="Náhled webu EMBER Bistro" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -746,7 +760,7 @@
     <!-- Konzultant -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="reference/03-konzultant/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/reference-03-konzultant.png" alt="Náhled webu Klára Veselá" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -785,7 +799,7 @@
     <!-- Apartmán -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="reference/04-apartman/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/reference-04-apartman.png" alt="Náhled webu Chalupa Na Mechu" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -824,7 +838,7 @@
     <!-- Advokát -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="reference/05-advokat/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/reference-05-advokat.png" alt="Náhled webu Lex & Forma" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -863,7 +877,7 @@
     <!-- Fitness -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="reference/06-fitness/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/reference-06-fitness.png" alt="Náhled webu Pulse Studio" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -902,7 +916,7 @@
     <!-- Digitální produkt -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="reference/07-produkt/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/reference-07-produkt.png" alt="Náhled webu AI Workflow Kit" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
@@ -941,7 +955,7 @@
     <!-- Makléř -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="reference/08-makler/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <img src="assets/previews/reference-08-makler.png" alt="Náhled webu Daniel Rys" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
