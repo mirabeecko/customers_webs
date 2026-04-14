@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Autolakýrnictví Šelbický | Krupka — Profesionální lakování vozidel</title>
-<meta name="description" content="Autolakýrnictví Šelbický Krupka — profesionální lakování, opravy laku, přelakování vozidel. Pod Stadionem 48, Krupka. Tel: 736 615 934">
+<meta name="description" content="Autolakýrnictví Šelbický Krupka — profesionální lakování, opravy laku, přelakování vozidel. Pod Stadionem 48, Krupka. Tel: 730 983 254">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,10 +77,24 @@ body {
   text-decoration: none;
 }
 .nav-logo-icon {
-  width: 40px; height: 40px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  width: 44px; height: 44px; border-radius: 8px;
+  background: linear-gradient(145deg, #ffd27a 0%, var(--gold) 35%, #c07a1e 70%, #2a1605 100%);
+  border: 1px solid rgba(255,255,255,0.28);
+  box-shadow: 0 0 0 1px rgba(212,165,116,0.35), 0 14px 34px rgba(212,165,116,0.32), inset 0 1px 0 rgba(255,255,255,0.5);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; flex-shrink: 0;
+  position: relative; overflow: hidden;
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.08em;
+  color: #160c04; flex-shrink: 0; transform: skew(-5deg);
+}
+.nav-logo-icon::before,
+.footer-logo-icon::before {
+  content: ''; position: absolute; inset: -45% 35% -45% auto; width: 16px;
+  background: rgba(255,255,255,0.45); transform: rotate(25deg);
+}
+.nav-logo-icon::after,
+.footer-logo-icon::after {
+  content: ''; position: absolute; left: 8px; right: 14px; bottom: 9px; height: 2px;
+  background: #160c04; border-radius: 2px; opacity: 0.78;
 }
 .nav-logo-text { line-height: 1.1; }
 .nav-logo-text strong {
@@ -465,9 +479,15 @@ h2.display {
   align-items: center; justify-content: center; gap: 0.5rem;
   background: linear-gradient(135deg, var(--dark-3), var(--dark-5));
   transition: transform 0.4s;
+  position: relative; overflow: hidden;
 }
 .gallery-item.large .gallery-placeholder { aspect-ratio: 16/7; }
 .gallery-item:hover .gallery-placeholder { transform: scale(1.03); }
+.gallery-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-placeholder::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(8,8,8,0.55), rgba(8,8,8,0.06) 58%, rgba(255,255,255,0.1));
+}
 .gallery-placeholder .gal-icon { font-size: 3rem; opacity: 0.3; }
 .gallery-placeholder .gal-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
 .gallery-overlay {
@@ -704,8 +724,12 @@ footer {
 }
 .footer-logo-icon {
   width: 36px; height: 36px; border-radius: 7px;
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  background: linear-gradient(145deg, #ffd27a 0%, var(--gold) 35%, #c07a1e 70%, #2a1605 100%);
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 0 0 1px rgba(212,165,116,0.28), 0 10px 24px rgba(212,165,116,0.25), inset 0 1px 0 rgba(255,255,255,0.42);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  font-family: var(--font-display); font-size: 0.68rem; font-weight: 900; letter-spacing: 0.08em; color: #160c04;
 }
 .footer-logo strong { font-weight: 800; font-size: 0.95rem; }
 .footer-brand p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; max-width: 300px; }
@@ -758,7 +782,7 @@ footer {
 <!-- NAV -->
 <nav id="nav">
   <a href="#uvod" class="nav-logo">
-    <div class="nav-logo-icon">🎨</div>
+    <div class="nav-logo-icon">LAK</div>
     <div class="nav-logo-text">
       <strong>Šelbický</strong>
       <span>Autolakýrnictví</span>
@@ -771,7 +795,7 @@ footer {
     <li><a href="#reference">Reference</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
-  <a href="tel:+420736615934" class="nav-cta">📞 736 615 934</a>
+  <a href="tel:+420730983254" class="nav-cta">📞 730 983 254</a>
   <div class="nav-burger" id="burger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -784,7 +808,7 @@ footer {
   <a href="#proc-my" onclick="toggleMenu()">O nás</a>
   <a href="#reference" onclick="toggleMenu()">Reference</a>
   <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
-  <a href="tel:+420736615934" class="menu-phone-mobile">📞 736 615 934</a>
+  <a href="tel:+420730983254" class="menu-phone-mobile">📞 730 983 254</a>
 </div>
 
 <!-- HERO -->
@@ -807,7 +831,7 @@ footer {
       </p>
       <div class="hero-ctas">
         <a href="#kontakt" class="btn-gold">Nezávazná poptávka</a>
-        <a href="tel:+420736615934" class="btn-outline-gold">📞 736 615 934</a>
+        <a href="tel:+420730983254" class="btn-outline-gold">📞 730 983 254</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -992,36 +1016,31 @@ footer {
     <div class="gallery-grid">
       <div class="gallery-item large fade-up">
         <div class="gallery-placeholder">
-          <span class="gal-icon">🚗</span>
-          <span class="gal-label">Kompletní přelakování · BMW 5</span>
+          <img src="https://images.pexels.com/photos/17992463/pexels-photo-17992463.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="Výrazně červeně nalakovaná karoserie v lakovacím boxu">
         </div>
         <div class="gallery-overlay"><span>BMW 5 — kompletní přelakování metalízou</span></div>
       </div>
       <div class="gallery-item fade-up d2">
         <div class="gallery-placeholder">
-          <span class="gal-icon">🎨</span>
-          <span class="gal-label">Lokální oprava · Škoda</span>
+          <img src="https://images.pexels.com/photos/11349965/pexels-photo-11349965.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Leštění oranžového laku elektrickou leštičkou">
         </div>
         <div class="gallery-overlay"><span>Škoda Octavia — lokální oprava</span></div>
       </div>
       <div class="gallery-item fade-up d1">
         <div class="gallery-placeholder">
-          <span class="gal-icon">🛡️</span>
-          <span class="gal-label">Antikorozní ochrana</span>
+          <img src="https://images.pexels.com/photos/6870296/pexels-photo-6870296.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Rozleštění poškozeného laku na černém voze">
         </div>
         <div class="gallery-overlay"><span>Podvozek — antikorozní ošetření</span></div>
       </div>
       <div class="gallery-item fade-up d2">
         <div class="gallery-placeholder">
-          <span class="gal-icon">💎</span>
-          <span class="gal-label">Keramická ochrana · Audi</span>
+          <img src="https://images.pexels.com/photos/5233262/pexels-photo-5233262.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Leštění červeného laku karoserie">
         </div>
         <div class="gallery-overlay"><span>Audi A4 — keramická ochrana</span></div>
       </div>
       <div class="gallery-item large fade-up d3">
         <div class="gallery-placeholder">
-          <span class="gal-icon">🔧</span>
-          <span class="gal-label">Oprava po nehodě · VW</span>
+          <img src="https://images.pexels.com/photos/30250199/pexels-photo-30250199.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="Profesionální lakování nárazníku v ochranném obleku">
         </div>
         <div class="gallery-overlay"><span>VW Golf — oprava po nehodě</span></div>
       </div>
@@ -1135,20 +1154,20 @@ footer {
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">„Přelakoval jsem u nich celé auto po nehodě. Výsledek naprosto perfektní — barva sedí přesně, lak rovný. Jinam bych nejel."</p>
         <div class="testi-author">
-          <div class="testi-avatar">MK</div>
+          <div class="testi-avatar">D</div>
           <div>
-            <div class="testi-name">Martin K.</div>
+            <div class="testi-name">Dan</div>
             <div class="testi-car">VW Passat · Teplice</div>
           </div>
         </div>
       </div>
       <div class="testi-card fade-up d2">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">„Lokální oprava nárazníku — nepoznáte, kde to bylo. Férová cena, hotovo do 2 dnů. Šelbický dělá řemeslo poctivě."</p>
+        <p class="testi-text">„Lokální oprava nárazníku — nepoznáte, kde to bylo. Férová cena, hotovo do 2 dnů. Dan dělá řemeslo poctivě."</p>
         <div class="testi-author">
-          <div class="testi-avatar">PV</div>
+          <div class="testi-avatar">D</div>
           <div>
-            <div class="testi-name">Petr V.</div>
+            <div class="testi-name">Dan</div>
             <div class="testi-car">Škoda Superb · Krupka</div>
           </div>
         </div>
@@ -1157,9 +1176,9 @@ footer {
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">„Antikorozní ošetření na veteránovi — neskutečná práce. Dostupná cena a přístup jako k prémiové zakázce. Vřele doporučuji."</p>
         <div class="testi-author">
-          <div class="testi-avatar">LN</div>
+          <div class="testi-avatar">D</div>
           <div>
-            <div class="testi-name">Ladislav N.</div>
+            <div class="testi-name">Dan</div>
             <div class="testi-car">Škoda 120 · Most</div>
           </div>
         </div>
@@ -1185,7 +1204,7 @@ footer {
             <div class="cib-icon">📞</div>
             <div>
               <div class="cib-label">Telefon</div>
-              <div class="cib-value"><a href="tel:+420736615934">736 615 934</a></div>
+              <div class="cib-value"><a href="tel:+420730983254">730 983 254</a></div>
             </div>
           </div>
           <div class="contact-info-block">
@@ -1224,11 +1243,11 @@ footer {
             <div class="cf-row">
               <div class="cf-group">
                 <label>Jméno</label>
-                <input type="text" placeholder="Jan Novák" required>
+                <input type="text" placeholder="Dan" required>
               </div>
               <div class="cf-group">
                 <label>Telefon</label>
-                <input type="tel" placeholder="736 000 000" required>
+                <input type="tel" placeholder="730 983 254" required>
               </div>
             </div>
             <div class="cf-group">
@@ -1268,7 +1287,7 @@ footer {
             <div class="mob-dot"></div>
             <div class="mob-text">
               <strong>Autolakýrnictví Šelbický</strong>
-              <span>Pod Stadionem 48, Krupka · 736 615 934</span>
+              <span>Pod Stadionem 48, Krupka · 730 983 254</span>
             </div>
           </div>
         </div>
@@ -1286,7 +1305,7 @@ footer {
 <div class="cta-banner">
   <h2>Váš vůz si zaslouží<br>to nejlepší</h2>
   <p>Zavolejte nám nebo přijeďte na bezplatnou prohlídku.</p>
-  <a href="tel:+420736615934" class="btn-dark">📞 Zavolat: 736 615 934</a>
+  <a href="tel:+420730983254" class="btn-dark">📞 Zavolat: 730 983 254</a>
 </div>
 
 <!-- FOOTER -->
@@ -1294,7 +1313,7 @@ footer {
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo">
-        <div class="footer-logo-icon">🎨</div>
+        <div class="footer-logo-icon">LAK</div>
         <strong>Autolakýrnictví Šelbický</strong>
       </div>
       <p>Profesionální lakování vozidel v Krupce a okolí. Rodinná firma s tradicí a precizním přístupem ke každé zakázce.</p>
@@ -1313,7 +1332,7 @@ footer {
     <div class="footer-col">
       <h4>Kontakt</h4>
       <ul>
-        <li><a href="tel:+420736615934">📞 736 615 934</a></li>
+        <li><a href="tel:+420730983254">📞 730 983 254</a></li>
         <li><a href="#kontakt">📍 Pod Stadionem 48</a></li>
         <li><a href="#kontakt">417 42 Krupka</a></li>
         <li><a href="#kontakt">Nové Modlany</a></li>

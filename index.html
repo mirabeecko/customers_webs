@@ -6,7 +6,7 @@
   <title>Ukázky webů — webdozitra.cz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,9 +20,9 @@
       --light:      #94a3b8;
       --accent:     #4f46e5;
       --accent-bg:  #eef2ff;
-      --r:          14px;
+      --r:          8px;
       --shadow:     0 1px 4px rgba(15,23,42,.06), 0 4px 16px rgba(15,23,42,.07);
-      --shadow-h:   0 4px 12px rgba(15,23,42,.08), 0 16px 40px rgba(15,23,42,.12);
+      --shadow-h:   0 6px 18px rgba(15,23,42,.12), 0 24px 56px rgba(15,23,42,.18);
     }
 
     html { scroll-behavior: smooth; }
@@ -137,15 +137,15 @@
 
     /* ── MAIN ── */
     main {
-      max-width: 1180px;
+      max-width: 1360px;
       margin: 0 auto;
       padding: 0 32px 80px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 30px;
     }
 
     /* ── CARD ── */
@@ -167,19 +167,17 @@
 
     /* ── IFRAME PREVIEW ── */
     .card-preview {
-      height: 210px;
+      height: 300px;
       overflow: hidden;
       position: relative;
       background: #0f1117;
       flex-shrink: 0;
     }
     .card-preview iframe {
-      width: 1280px;
-      height: 960px;
+      width: 100%;
+      height: 900px;
       border: none;
       display: block;
-      transform: scale(0.266);
-      transform-origin: top left;
       pointer-events: none;
       user-select: none;
     }
@@ -189,8 +187,8 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        transparent 35%,
-        rgba(255,255,255,.25) 75%,
+        transparent 48%,
+        rgba(255,255,255,.12) 78%,
         rgba(255,255,255,1) 100%
       );
       pointer-events: none;
@@ -214,6 +212,7 @@
     .type-portfolio{ background: #ede9fe; color: #5b21b6; }
     .type-landing  { background: #dbeafe; color: #1e40af; }
     .type-event    { background: #fce7f3; color: #9d174d; }
+    .type-water    { background: #ccfbf1; color: #0f766e; }
 
     /* ── CARD BODY ── */
     .card-top {
@@ -321,7 +320,7 @@
       font-size: .8rem;
       font-weight: 600;
       padding: 9px 16px;
-      border-radius: 9px;
+      border-radius: 8px;
       text-decoration: none;
       transition: all .18s;
       cursor: pointer;
@@ -365,7 +364,7 @@
 
 <nav>
   <div class="nav-brand">webdo<span>zitra</span>.cz</div>
-  <div class="nav-count">6 ukázkových webů</div>
+  <div class="nav-count">15 ukázkových webů</div>
 </nav>
 
 <header>
@@ -374,12 +373,12 @@
   <p>Každý web je jiný obor, jiný zákazník. Projděte si ukázky a uvidíte, jak může vypadat váš web — funkčně, přehledně a přesvědčivě.</p>
   <div class="stats-row">
     <div class="stat">
-      <span class="stat-num">6</span>
+      <span class="stat-num">15</span>
       <span class="stat-label">Ukázek</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat">
-      <span class="stat-num">5</span>
+      <span class="stat-num">8</span>
       <span class="stat-label">Typů webů</span>
     </div>
     <div class="stat-divider"></div>
@@ -392,6 +391,84 @@
 
 <main>
   <div class="grid">
+
+    <!-- PaddleBoardTrips.eu -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="demo7-paddleboardy-milada.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-water">Zážitková půjčovna</span>
+          <span class="tech-tag">HTML</span>
+        </div>
+        <h2>PaddleBoardTrips.eu</h2>
+        <div class="subtitle">Paddleboardy Milada · školy, skupiny a noční jízdy</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Barevná prezentace půjčovny paddleboardů na Miladě. Staví na fotkách, školním sportovním dni, noční jízdě a rychlém kontaktu přes telefon nebo e-mail.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Ceník půjčení paddleboardů</li>
+              <li>Hlavní nabídku pro školy a skupiny</li>
+              <li>Noční jízdu jako výrazný zážitkový blok</li>
+              <li>Interaktivní mapu s navigací na přesnou pozici</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="demo7-paddleboardy-milada.html">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/blob/main/demo7-paddleboardy-milada.html" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Ninja den -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="demo3-ninja-vikend.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-event">Registrace na akci</span>
+          <span class="tech-tag">HTML</span>
+        </div>
+        <h2>Ninja den</h2>
+        <div class="subtitle">Dobrodružný den pro děti 6–15 let</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Stránka pro jednorázovou akci — přesvědčí rodiče a rovnou sbírá přihlášky. Vše na jednom místě, bez zbytečných kliků.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Program akce a co děti čeká</li>
+              <li>Praktické info (věk, vybavení, místo)</li>
+              <li>Termíny a cena vstupu</li>
+              <li>Přihlašovací formulář</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="demo3-ninja-vikend.html">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/blob/main/demo3-ninja-vikend.html" target="_blank">Kód</a>
+      </div>
+    </div>
 
     <!-- Autolakyrnictví Šelbický -->
     <div class="card">
@@ -482,7 +559,7 @@
           <span class="tech-tag">HTML</span>
         </div>
         <h2>Ondřej Blaha — Webdesigner</h2>
-        <div class="subtitle">Freelance webdesigner & frontend developer</div>
+        <div class="subtitle">Freelance webdesigner &amp; frontend developer</div>
       </div>
       <div class="accordion">
         <button class="accordion-toggle" onclick="toggle(this)">
@@ -588,18 +665,18 @@
       </div>
     </div>
 
-    <!-- Ninja den -->
+    <!-- Hodinový manžel -->
     <div class="card">
       <div class="card-preview">
-        <iframe src="demo3-ninja-vikend.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="reference/01-remeslnik/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
       </div>
       <div class="card-top">
         <div class="card-meta">
-          <span class="web-type type-event">Registrace na akci</span>
-          <span class="tech-tag">HTML</span>
+          <span class="web-type type-local">Lokální služba</span>
+          <span class="tech-tag">React build</span>
         </div>
-        <h2>Ninja den</h2>
-        <div class="subtitle">Dobrodružný den pro děti 6–15 let</div>
+        <h2>Hodinový manžel Novák</h2>
+        <div class="subtitle">Řemeslník a instalatér s rychlým výjezdem</div>
       </div>
       <div class="accordion">
         <button class="accordion-toggle" onclick="toggle(this)">
@@ -608,22 +685,295 @@
         <div class="accordion-body">
           <div class="info-block">
             <div class="info-label">Účel webu</div>
-            <div class="info-text">Stránka pro jednorázovou akci — přesvědčí rodiče a rovnou sbírá přihlášky. Vše na jednom místě, bez zbytečných kliků.</div>
+            <div class="info-text">Rychlá lokální prezentace pro službu, kde zákazník hlavně potřebuje důvěru, přehled služeb a okamžité zavolání.</div>
           </div>
           <div class="info-block">
             <div class="info-label">Co zákazník najde</div>
             <ul class="info-list">
-              <li>Program akce a co děti čeká</li>
-              <li>Praktické info (věk, vybavení, místo)</li>
-              <li>Termíny a cena vstupu</li>
-              <li>Přihlašovací formulář</li>
+              <li>Služby a orientační ceník</li>
+              <li>Rychlé mobilní CTA</li>
+              <li>Přehled důvodů, proč zavolat</li>
+              <li>Kontakt pro okamžitou poptávku</li>
             </ul>
           </div>
         </div>
       </div>
       <div class="card-actions">
-        <a class="btn btn-primary" href="demo3-ninja-vikend.html">Zobrazit web</a>
-        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/blob/main/demo3-ninja-vikend.html" target="_blank">Kód</a>
+        <a class="btn btn-primary" href="reference/01-remeslnik/">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/01-remeslnik" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Bistro -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="reference/02-bistro/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-event">Gastro web</span>
+          <span class="tech-tag">React build</span>
+        </div>
+        <h2>EMBER Bistro</h2>
+        <div class="subtitle">Moderní bistro a food truck</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Atmosférický gastro web, který rychle prodává chuť, ukazuje menu a vede návštěvníka na mapu nebo kontakt.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Aktuální menu</li>
+              <li>Otevírací dobu</li>
+              <li>Mapu a místo provozu</li>
+              <li>Výraznou vizuální identitu</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/02-bistro/">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/02-bistro" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Konzultant -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="reference/03-konzultant/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-portfolio">Osobní služby</span>
+          <span class="tech-tag">React build</span>
+        </div>
+        <h2>Klára Veselá</h2>
+        <div class="subtitle">Virtuální asistentka a konzultantka</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Osobní web pro konzultantku, který buduje důvěru a sbírá poptávky na úvodní schůzku.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Popis služeb a spolupráce</li>
+              <li>FAQ pro rychlé rozhodnutí</li>
+              <li>Rezervaci konzultace</li>
+              <li>Kontaktní CTA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/03-konzultant/">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/03-konzultant" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Apartmán -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="reference/04-apartman/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-booking">Ubytování</span>
+          <span class="tech-tag">React build</span>
+        </div>
+        <h2>Chalupa Na Mechu</h2>
+        <div class="subtitle">Prezentační web horské chalupy</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Web pro ubytování s důrazem na atmosféru místa, vybavení a poptávku rezervace.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Galerii a vybavení chalupy</li>
+              <li>Tipy na výlety</li>
+              <li>Rezervační poptávku</li>
+              <li>Přehled pro rychlé rozhodnutí</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/04-apartman/">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/04-apartman" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Advokát -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="reference/05-advokat/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-local">Profesionální služby</span>
+          <span class="tech-tag">React build</span>
+        </div>
+        <h2>Lex &amp; Forma</h2>
+        <div class="subtitle">Advokátní kancelář s důvěryhodným webem</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Seriózní prezentace advokátní kanceláře, která jasně ukazuje odbornost a vede klienta ke kontaktu.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Odbornosti kanceláře</li>
+              <li>Představení týmu</li>
+              <li>GDPR a důvěryhodnostní prvky</li>
+              <li>Kontaktní poptávku</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/05-advokat/">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/05-advokat" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Fitness -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="reference/06-fitness/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-booking">Fitness a lekce</span>
+          <span class="tech-tag">React build</span>
+        </div>
+        <h2>Pulse Studio</h2>
+        <div class="subtitle">Fitness a jógové studio s rozvrhem</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Web pro studio, který prodává energii značky a vede návštěvníky k přihlášení na lekci.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Rozvrh lekcí</li>
+              <li>Ceník a nabídku členství</li>
+              <li>Proměny klientů</li>
+              <li>Formulář pro přihlášení</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/06-fitness/">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/06-fitness" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Digitální produkt -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="reference/07-produkt/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-landing">Digitální produkt</span>
+          <span class="tech-tag">React build</span>
+        </div>
+        <h2>AI Workflow Kit</h2>
+        <div class="subtitle">One-page landing page pro digitální produkt</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Prodejní landing page pro digitální produkt, kde je důležitá rychlá hodnota, sociální důkaz a objednávkové CTA.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Benefity produktu</li>
+              <li>Recenze a důvěryhodnost</li>
+              <li>Jasnou objednávkovou výzvu</li>
+              <li>Jednoduchou strukturu jedné stránky</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/07-produkt/">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/07-produkt" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Makléř -->
+    <div class="card">
+      <div class="card-preview">
+        <iframe src="reference/08-makler/" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-portfolio">Realitní makléř</span>
+          <span class="tech-tag">React build</span>
+        </div>
+        <h2>Daniel Rys</h2>
+        <div class="subtitle">Luxusní osobní web realitního makléře</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Osobní realitní web zaměřený na sběr leadů pro bezplatný odhad a budování důvěry v makléře.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Prémiovou prezentaci služeb</li>
+              <li>Důvěryhodnostní prvky a výsledky</li>
+              <li>CTA na bezplatný odhad</li>
+              <li>Kontaktní poptávku</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="reference/08-makler/">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/tree/main/reference/08-makler" target="_blank">Kód</a>
       </div>
     </div>
 
