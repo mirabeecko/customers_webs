@@ -144,7 +144,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
       gap: 36px;
     }
 
@@ -167,7 +167,7 @@
 
     /* ── SITE PREVIEW ── */
     .card-preview {
-      height: 420px;
+      height: 500px;
       overflow: hidden;
       position: relative;
       background: transparent;
@@ -182,12 +182,12 @@
       user-select: none;
       object-fit: cover;
       object-position: center top;
-      transform: scale(1.08);
+      transform: scale(1.16);
       transform-origin: center top;
       transition: transform .35s ease;
     }
     .card:hover .card-preview img {
-      transform: scale(1.13);
+      transform: scale(1.22);
     }
     .card-preview::after {
       content: '';
@@ -221,6 +221,7 @@
     .type-landing  { background: #dbeafe; color: #1e40af; }
     .type-event    { background: #fce7f3; color: #9d174d; }
     .type-water    { background: #ccfbf1; color: #0f766e; }
+    .type-electric { background: #fef9c3; color: #854d0e; }
 
     /* ── CARD BODY ── */
     .card-top {
@@ -258,32 +259,70 @@
     }
 
     /* ── ACCORDION ── */
-    .accordion { border-top: 1px solid var(--border); }
+    .accordion {
+      border-top: 1px solid var(--border);
+      background: #fff;
+      padding: 12px 16px 0;
+    }
     .accordion-toggle {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 11px 20px;
-      background: none;
-      border: none;
-      color: var(--muted);
+      gap: 12px;
+      padding: 13px 15px;
+      background: linear-gradient(135deg, #fff 0%, #eef2ff 100%);
+      border: 2px solid var(--border-d);
+      border-radius: 8px;
+      color: var(--text);
       font-size: .78rem;
-      font-weight: 600;
+      font-weight: 800;
       cursor: pointer;
-      transition: color .15s, background .15s;
+      transition: color .15s, background .15s, border-color .15s, box-shadow .15s, transform .15s;
       text-align: left;
       font-family: inherit;
+      box-shadow: 0 4px 0 rgba(79,70,229,.16);
     }
-    .accordion-toggle:hover { background: var(--bg); color: var(--text); }
-    .accordion-toggle .arrow { transition: transform .22s; flex-shrink: 0; font-style: normal; font-size: .75rem; }
-    .accordion-toggle.open { color: var(--accent); }
+    .accordion-toggle::after {
+      content: 'Rozkliknout';
+      margin-left: auto;
+      color: var(--accent);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: .66rem;
+      font-weight: 900;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .accordion-toggle:hover {
+      background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .accordion-toggle .arrow {
+      width: 26px;
+      height: 26px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      transition: transform .22s;
+      flex-shrink: 0;
+      font-style: normal;
+      font-size: .72rem;
+    }
+    .accordion-toggle.open { color: var(--accent); box-shadow: 0 2px 0 rgba(79,70,229,.2); }
+    .accordion-toggle.open::after { content: 'Skrýt detail'; }
     .accordion-toggle.open .arrow { transform: rotate(180deg); }
 
     .accordion-body {
       display: none;
-      padding: 4px 20px 18px;
-      border-top: 1px solid var(--border);
+      padding: 6px 4px 18px;
+      border-top: none;
       background: #fafbfc;
     }
     .accordion-body.open { display: block; }
@@ -365,12 +404,15 @@
       header { padding: 48px 20px 48px; }
       main { padding: 0 16px 60px; }
       .grid { grid-template-columns: 1fr; }
-      .card-preview { height: 330px; }
+      .card-preview { height: 360px; }
       .card-preview img {
-        transform: scale(1.04);
+        object-position: left top;
+        transform: scale(1.03);
+        transform-origin: left top;
       }
-      .card:hover .card-preview img { transform: scale(1.08); }
+      .card:hover .card-preview img { transform: scale(1.07); }
       .stats-row { gap: 20px; padding: 14px 20px; }
+      .accordion-toggle::after { display: none; }
     }
   </style>
 </head>
@@ -378,7 +420,7 @@
 
 <nav>
   <div class="nav-brand">webdo<span>zitra</span>.cz</div>
-  <div class="nav-count">15 ukázkových webů</div>
+  <div class="nav-count">16 ukázkových webů</div>
 </nav>
 
 <header>
@@ -387,12 +429,12 @@
   <p>Každý web je jiný obor, jiný zákazník. Projděte si ukázky a uvidíte, jak může vypadat váš web — funkčně, přehledně a přesvědčivě.</p>
   <div class="stats-row">
     <div class="stat">
-      <span class="stat-num">15</span>
+      <span class="stat-num">16</span>
       <span class="stat-label">Ukázek</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat">
-      <span class="stat-num">8</span>
+      <span class="stat-num">9</span>
       <span class="stat-label">Typů webů</span>
     </div>
     <div class="stat-divider"></div>
@@ -481,6 +523,45 @@
       <div class="card-actions">
         <a class="btn btn-primary" href="demo3-ninja-vikend.html">Zobrazit web</a>
         <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/blob/main/demo3-ninja-vikend.html" target="_blank">Kód</a>
+      </div>
+    </div>
+
+    <!-- Pavel Douša -->
+    <div class="card">
+      <div class="card-preview">
+        <img src="assets/previews/demo8-pavel-dousa-elektrikar.png" alt="Náhled webu Pavel Douša elektrikář" loading="lazy">
+      </div>
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="web-type type-electric">Elektrikářský web</span>
+          <span class="tech-tag">HTML</span>
+        </div>
+        <h2>Pavel Douša — elektrikář &amp; motorkář</h2>
+        <div class="subtitle">Chabařovice · rozvaděče, elektroinstalace a rekonstrukce</div>
+      </div>
+      <div class="accordion">
+        <button class="accordion-toggle" onclick="toggle(this)">
+          Co web obsahuje <span class="arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          <div class="info-block">
+            <div class="info-label">Účel webu</div>
+            <div class="info-text">Konverzní jednostránkový web pro elektrikáře z Chabařovic. Staví rozvaděče jako hlavní produkt a používá motorkářský tón pro zapamatovatelný brand.</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Co zákazník najde</div>
+            <ul class="info-list">
+              <li>Hlavní nabídku montáže a výměny rozvaděčů</li>
+              <li>Lukrativní elektrikářské práce pro domy, byty a provozy</li>
+              <li>Vtipný, ale důvěryhodný brand elektrikáře a motorkáře</li>
+              <li>Rychlou poptávku připravenou na napojení kontaktu</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="demo8-pavel-dousa-elektrikar.html">Zobrazit web</a>
+        <a class="btn btn-ghost" href="https://github.com/mirabeecko/customers_webs/blob/main/demo8-pavel-dousa-elektrikar.html" target="_blank">Kód</a>
       </div>
     </div>
 
@@ -838,7 +919,7 @@
     <!-- Advokát -->
     <div class="card">
       <div class="card-preview">
-        <img src="assets/previews/reference-05-advokat.png" alt="Náhled webu Lex & Forma" loading="lazy">
+        <img src="assets/previews/reference-05-advokat.png" alt="Náhled webu Lex &amp; Forma" loading="lazy">
       </div>
       <div class="card-top">
         <div class="card-meta">
